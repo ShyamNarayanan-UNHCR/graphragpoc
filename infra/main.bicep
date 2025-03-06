@@ -92,7 +92,10 @@ module aksWorkloadIdentityRBAC 'core/rbac/workload-identity-rbac.bicep' = {
   params: {
     principalId: workloadIdentity.outputs.principalId
     principalType: 'ServicePrincipal'
+    aiSearchName: aiSearch.outputs.name
+    appInsightsName: appInsights.outputs.name
     cosmosDbName: cosmosdb.outputs.name
+    storageName: storage.outputs.name
   }
 }
 
@@ -261,7 +264,7 @@ module privateDnsZone 'core/vnet/private-dns-zone.bicep' = {
   params: {
     name: dnsDomain
     vnetNames: [
-      vnet.outputs.vnetName // name
+      vnet.outputs.vnetName
     ]
   }
 }
@@ -270,7 +273,7 @@ module privatelinkPrivateDns 'core/vnet/privatelink-private-dns-zones.bicep' = i
   name: 'privatelink-private-dns-zones-deployment'
   params: {
     linkedVnetIds: [
-      vnet.outputs.vnetId // id
+      vnet.outputs.vnetId
     ]
   }
 }
